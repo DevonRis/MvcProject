@@ -1,0 +1,158 @@
+﻿@model List<SkillsShowcaseMVC.Models.EmployeesViewModel>
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #333;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-top: 1px solid #ddd;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #ddd;
+            background-color: #f1f1f1;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9e9e9;
+        }
+
+    .modal-header {
+        background-color: #007bff;
+        color: #fff;
+        border-bottom: 1px solid #007bff;
+    }
+
+    .modal-title {
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 1.5rem;
+    }
+
+    .modal-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 1rem;
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-info {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+        .btn-info:hover,
+        .btn-secondary:hover {
+            color: #fff;
+            background-color: darken(#007bff, 10%);
+            border-color: darken(#007bff, 10%);
+        }
+</style>
+@if (Model != null) 
+{
+    foreach (var employee in Model) 
+    {
+        <div class="container">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th id="row1" scope="col">ID</th>
+                            <th id="row2" scope="col">First</th>
+                            <th id="row3" scope="col">Last</th>
+                            <th id="row4" scope="col">Email</th>
+                            <th id="row5" scope="col">PhoneNumber</th>
+                            <th id="row6" scope="col">MartialStatus</th>
+                            <th id="row7" scope="col">Gender</th>
+                            <th id="row8" scope="col">Request Employee SecretKeys</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th id="row9" scope="row">@employee.EmployeeId</th>
+                            <td id="row10">@employee.FirstName</td>
+                            <td id="row11">@employee.LastName</td>
+                            <td id="row12">@employee.Email</td>
+                            <td id="row13">@employee.PhoneNumber</td>
+                            <td id="row14">@employee.MaritalStatus</td>
+                            <td id="row15">@employee.Gender</td>
+                            <td id="row16"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#employeeModal" onclick="loadEmployeeSecrets(@employee.EmployeeId)">Show Employee SecretKeys</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}
+<div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalLabel">Employee Secrets</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                Loading...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function loadEmployeeSecrets(employeeId) {
+        $.ajax({
+            url: '/EmployeeSecrets/GetEmployeeSecrets',
+            type: 'GET',
+            data: { employeeID: employeeId },
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<p>An error occurred while loading data.</p>');
+            }
+        });
+    }
+</script>
