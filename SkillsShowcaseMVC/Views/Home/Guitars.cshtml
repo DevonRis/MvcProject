@@ -1,0 +1,83 @@
+﻿@model List<SkillsShowcaseMVC.Models.GuitarsViewModel>
+
+<style>
+    .guitar-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+        .guitar-container .card {
+            flex: 1 1 calc(25% - 1rem); 
+            box-sizing: border-box;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            min-height: 80%;
+        }
+
+        .guitar-container .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .guitar-container .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .guitar-container .card .btn {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .guitar-container .card p {
+            margin: 0.5rem 0;
+        }
+</style>
+@if (Model != null)
+{
+    <div class="guitar-container">
+        @foreach (var guitar in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/images/@((guitar.GuitarModel + ".png"))">
+                <div class="card-body">
+                    <h5 class="card-title">Guitar Info</h5>
+                    <hr />
+                    <strong>MF:</strong><p class="card-text">@guitar.GuitarManufacturer</p>
+                    <strong>Model:</strong><p class="card-text">@guitar.GuitarModel</p>
+                    <strong>Price:</strong><p class="card-text">@guitar.GuitarPrice</p>
+                    <strong>Year:</strong><p class="card-text">@guitar.BuildYear</p>
+                    <button type="button" class="btn btn-info" onclick="loadGuitarManufacturerDetails(@guitar.GuitarId)">Show Manufacturer Details</button>
+                </div>
+            </div>
+        }
+    </div>
+} 
+else 
+{
+    <p>There are no guitars to display.</p>
+}
+<script>
+    function loadGuitarManufacturerDetails(guitarId) {
+        $.ajax({
+            url: '/GuitarManufacturerDetails/GetGuitarManufacturerDetails',
+            type: 'GET',
+            data: { guitarId: guitarId },
+            success: function (data) {
+                html(data);
+            }
+        });
+    }
+</script>

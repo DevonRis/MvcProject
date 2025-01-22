@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\..\Software_Development_Showcase\SkillsShowcase\SkillsShowcase.Shared\SkillsShowcase.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
