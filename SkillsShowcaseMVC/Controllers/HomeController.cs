@@ -41,6 +41,25 @@ namespace SkillsShowcaseMVC.Controllers
             return View(employeesViewModel);
         }
 
+        [HttpGet]
+        public IActionResult Guitars()
+        {
+            List<GuitarsViewModel> guitarsViewModel = new();
+            List<GuitarsForApiCall>? guitarsFromApi = _getEmployeesAPI?.GetApiGuitars().Result;
+            if (guitarsFromApi != null)
+            {
+                guitarsViewModel = guitarsFromApi.Select(guitar => new GuitarsViewModel
+                {
+                    GuitarId = guitar.GuitarId,
+                    GuitarManufacturer = guitar.GuitarManufacturer,
+                    GuitarModel = guitar.GuitarModel,
+                    GuitarPrice = guitar.GuitarPrice,
+                    BuildYear = guitar.BuildYear,
+                }).ToList();
+            }
+            return View(guitarsViewModel);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

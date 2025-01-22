@@ -12,7 +12,6 @@ namespace SkillsShowcaseMVC.Controllers.EmployeesPostSection
         {
             _getEmployeesAPI = getApiClient;
         }
-
         [HttpGet]
         public IActionResult GetEmployeeSecrets(int employeeID)
         {
