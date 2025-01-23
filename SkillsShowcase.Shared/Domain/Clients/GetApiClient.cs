@@ -81,5 +81,10 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             return await _httpClient.GetFromJsonAsync<List<NarutoInfoForApiCall>?>("/api/NarutoCharacters");
         }
+        //Everything with GuitarManfactureDetails Table
+        public async Task<List<GuitarManufactureDetailsForApiCall>?> GetManufactureDetails()
+        {
+            return await _httpClient.GetFromJsonAsync<List<GuitarManufactureDetailsForApiCall>?>("/api/GuitarMfDetails");
+        }
     }
 }

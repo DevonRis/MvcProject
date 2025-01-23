@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Shared.Domain.Models;
 using SkillsShowcase.Shared.Domain.Models.Enums;
+using System;
 
 namespace SkillsShowcase.Api.Models.Data
 {
@@ -23,6 +24,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<FavoriteMusicians> FavoriteMusicians { get; set; }
         public DbSet<NarutoCharacters> NarutoCharacters { get; set; }
         public DbSet<NarutoCharacterDetails> NarutoCharacterDetails { get; set; }
+        public DbSet<GuitarManufactureDetails> GuitarManufactureDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -850,6 +852,46 @@ namespace SkillsShowcase.Api.Models.Data
                 Status = NarutoCharacterStatus.Jinchuriki,
                 CharacterBio = "Kurama is the Nine Tails Bijuu of the Hidden Leaf Village. He is known as the Nine Tails Fox.",
                 KillCount = 5000
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 1,
+                ManufacturerName = "Fender",
+                Location = "Los Angeles, CA",
+                ContactNumber = "718-536-9997",
+                Email = "contact@Fender.com",
+                Website = "www.fender.com",
+                DateEstablished = new DateTime(1946, 1, 10)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 2,
+                ManufacturerName = "Gibson",
+                Location = "Nashville, TN",
+                ContactNumber = "1-800-444-2766",
+                Email = "service@gibson.com",
+                Website = "www.gibson.com",
+                DateEstablished = new DateTime(1902, 6, 10)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 3,
+                ManufacturerName = "PaulReedSmith",
+                Location = "Stevensville, MD",
+                ContactNumber = "410-643-9970",
+                Email = "info@prsguitars.com",
+                Website = "www.prsguitars.com",
+                DateEstablished = new DateTime(1985, 4, 13)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 4,
+                ManufacturerName = "Ibanez",
+                Location = "Nagoya, Japan",
+                ContactNumber = "81-52-211-9611",
+                Email = "contact@ibanez.com",
+                Website = "www.ibanez.com",
+                DateEstablished = new DateTime(1957, 2, 15)
             });
         }
     }
