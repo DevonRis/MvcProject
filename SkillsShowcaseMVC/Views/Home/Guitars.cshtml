@@ -71,13 +71,6 @@ else
 }
 <script>
     function loadGuitarManufacturerDetails(guitarId) {
-        $.ajax({
-            url: '/GuitarManufacturerDetails/GetGuitarManufacturerDetails',
-            type: 'GET',
-            data: { guitarId: guitarId },
-            success: function (data) {
-                html(data);
-            }
-        });
+        window.location.href = '/GuitarManufacturerDetails/GetGuitarManufacturerDetails?guitarId=' + guitarId;
     }
 </script>
