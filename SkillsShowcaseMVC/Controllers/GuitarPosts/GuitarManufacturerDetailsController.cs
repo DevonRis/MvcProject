@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillsShowcase.Shared.Domain.Clients;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
-using SkillsShowcase.Shared.Domain.Models.Enums;
 using SkillsShowcaseMVC.Models;
 
 namespace SkillsShowcaseMVC.Controllers.GuitarPosts
@@ -22,7 +21,7 @@ namespace SkillsShowcaseMVC.Controllers.GuitarPosts
             List<GuitarManufactureDetailsForApiCall>? guitarManufacturerDetailsFromAPI = _getGuitarMFDetailsAPI?
                 .GetManufactureDetails()
                 .Result;
-            var manufacturerMapping = new Dictionary<int, int> //forcing a number Pair : Continue to study this
+            var manufacturerMapping = new Dictionary<int, int> //forcing a number Pair because numbers(GuitarBrandName) didnt match : Continue to study this
             {
                 { 1, 1 }, // Fender
                 { 2, 1 }, // Fender
