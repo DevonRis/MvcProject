@@ -21,20 +21,20 @@ namespace SkillsShowcaseMVC.Controllers.GuitarPosts
             List<GuitarManufactureDetailsForApiCall>? guitarManufacturerDetailsFromAPI = _getGuitarMFDetailsAPI?
                 .GetManufactureDetails()
                 .Result;
-            var manufacturerMapping = new Dictionary<int, int> //forcing a number Pair because numbers(GuitarBrandName) didnt match : Continue to study this
+            var forcedPairNumbers = new Dictionary<int, int> //forcing a number Pair because numbers(GuitarBrandName) didnt match : Continue to study this
             {
-                { 1, 1 }, // Fender
-                { 2, 1 }, // Fender
-                { 3, 1 }, // Fender
-                { 4, 1 }, // Fender
-                { 5, 2 }, // Gibson
-                { 6, 2 }, // Gibson
-                { 7, 3 }, // PaulReedSmith
-                { 8, 4 }  // Ibanez
+                { 1, 1 }, // GuitarId 1: Fender
+                { 2, 1 }, // GuitarId 2: Fender
+                { 3, 1 }, // GuitarId 3: Fender
+                { 4, 1 }, // GuitarId 4: Fender
+                { 5, 2 }, // GuitarId 5: Gibson
+                { 6, 2 }, // GuitarId 6: Gibson
+                { 7, 3 }, // GuitarId 7: PaulReedSmith
+                { 8, 4 }  // GuitarId 8: Ibanez
             };
-            if (guitarManufacturerDetailsFromAPI != null && manufacturerMapping.ContainsKey(guitarId))
+            if (guitarManufacturerDetailsFromAPI != null && forcedPairNumbers.ContainsKey(guitarId))
             {
-                int manufacturerId = manufacturerMapping[guitarId];
+                int manufacturerId = forcedPairNumbers[guitarId];
                 var guitarManufacturerDetail = guitarManufacturerDetailsFromAPI.FirstOrDefault(g => g.GuitarManufacturerId == manufacturerId);
                 if (guitarManufacturerDetail != null)
                 {
