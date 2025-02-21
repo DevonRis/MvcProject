@@ -25,6 +25,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<NarutoCharacters> NarutoCharacters { get; set; }
         public DbSet<NarutoCharacterDetails> NarutoCharacterDetails { get; set; }
         public DbSet<GuitarManufactureDetails> GuitarManufactureDetails { get; set; }
+        public DbSet<Assassins> Assassins { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -892,6 +893,18 @@ namespace SkillsShowcase.Api.Models.Data
                 Email = "contact@ibanez.com",
                 Website = "www.ibanez.com",
                 DateEstablished = new DateTime(1957, 2, 15)
+            });
+            modelBuilder.Entity<Assassins>().HasData(new Assassins
+            {
+                AssassinId = 1,
+                FirstName = "Ezio",
+                LastName = "Lorenzo",
+                Age = ContinentalAgeRange.Forty,
+                Height = "5'10",
+                RegisteredDate = new DateTime(2024, 1, 10),
+                State = AllFiftyStates.NY,
+                MartialArt = MartialArts.MixedMartialArts,
+                Weapon = Weapons.Glock19,
             });
         }
     }

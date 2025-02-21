@@ -21,7 +21,7 @@ namespace SkillsShowcaseMVC.Controllers.GuitarPosts
             List<GuitarManufactureDetailsForApiCall>? guitarManufacturerDetailsFromAPI = _getGuitarMFDetailsAPI?
                 .GetManufactureDetails()
                 .Result;
-            var forcedPairNumbers = new Dictionary<int, int> //forcing a number Pair because numbers(GuitarBrandName) didnt match : Continue to study this
+            Dictionary<int, int>? forcedPairNumbers = new () //forcing a number Pair because numbers(GuitarBrandName) didnt match : Continue to study this
             {
                 { 1, 1 }, // GuitarId 1: Fender
                 { 2, 1 }, // GuitarId 2: Fender
