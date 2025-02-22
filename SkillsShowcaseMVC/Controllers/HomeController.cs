@@ -59,6 +59,11 @@ namespace SkillsShowcaseMVC.Controllers
             }
             return View(guitarsViewModel);
         }
+        public IActionResult ContinentalIndex()
+        {
+            var model = new ContinentalRegistrationModel();
+            return View(model);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
