@@ -1,12 +1,14 @@
 ﻿using SkillsShowcase.Shared.Domain.Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkillsShowcase.Shared.Domain.Models
 {
     public class Assassins
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AssassinId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

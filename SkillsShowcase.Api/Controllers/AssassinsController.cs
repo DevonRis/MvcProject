@@ -19,5 +19,11 @@ namespace SkillsShowcase.Api.Controllers
             AssassinsResponse response = await _assassinsService.GetAssassinsFromRepo();
             return Ok(response.Assassins);
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(AssassinsPostRequest assassinsPostRequest)
+        {
+            await _assassinsService.CreateAssassin(assassinsPostRequest);
+            return Ok();
+        }
     }
 }

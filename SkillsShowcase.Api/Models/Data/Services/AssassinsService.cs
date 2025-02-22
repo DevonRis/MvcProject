@@ -1,5 +1,7 @@
 ﻿using SkillsShowcase.Api.Models.Data.Repositories;
 using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
+using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Save;
+using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
 namespace SkillsShowcase.Api.Models.Data.Services
 {
@@ -12,6 +14,13 @@ namespace SkillsShowcase.Api.Models.Data.Services
             {
                 Assassins = assassinsData
             };
+        }
+        public async Task CreateAssassin(AssassinsPostRequest assassinsPostRequest)
+        {
+            if (assassinsPostRequest.CreateAssassins != null)
+            {
+                await assassinsRepository.CreateNewAssassin(assassinsPostRequest.CreateAssassins);
+            }
         }
     }
 }

@@ -23,5 +23,22 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
                 Weapon = assassin.Weapon,
             }).ToArray();
         }
+        //CREATE ASSASSIN FROM CONTEXT
+        internal async Task CreateNewAssassin(AssassinsForApiCall assassinsForApiCall)
+        {
+            Assassins assassin = new()
+            {
+                FirstName = assassinsForApiCall.FirstName,
+                LastName = assassinsForApiCall.LastName,
+                Age = assassinsForApiCall.Age,
+                Height = assassinsForApiCall.Height,
+                RegisteredDate = assassinsForApiCall.RegisteredDate,
+                State = assassinsForApiCall.State,
+                MartialArt = assassinsForApiCall.MartialArt,
+                Weapon = assassinsForApiCall.Weapon,
+            };
+            await appDbContext.Assassins.AddAsync(assassin);
+            await appDbContext.SaveChangesAsync();
+        }
     }
 }
