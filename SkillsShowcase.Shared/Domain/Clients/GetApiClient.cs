@@ -86,5 +86,22 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             return await _httpClient.GetFromJsonAsync<List<GuitarManufactureDetailsForApiCall>?>("/api/GuitarMfDetails");
         }
+        //Everything with Assassins Table
+        public async Task<List<AssassinsForApiCall>?> GetFromAssassinsTable()
+        {
+            return await _httpClient.GetFromJsonAsync<List<AssassinsForApiCall>?>("/api/Assassins");
+        }
+        public async Task SaveInAssassinsTable(AssassinsForApiCall assassins)
+        {
+            await _httpClient.PostAsJsonAsync("/api/Assassins", assassins);
+        }
+        public async Task UpdateAssassinsTable(AssassinsForApiCall assassins)
+        {
+            await _httpClient.PutAsJsonAsync("/api/Assassins", assassins);
+        }
+        public async Task DeleteAssassinsById(int id)
+        {
+            await _httpClient.DeleteAsync($"/api/Assassins/{id}");
+        }
     }
 }
